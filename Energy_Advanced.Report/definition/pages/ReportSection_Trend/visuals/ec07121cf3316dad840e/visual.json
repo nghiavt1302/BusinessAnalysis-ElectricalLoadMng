@@ -1,0 +1,205 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "ec07121cf3316dad840e",
+  "position": {
+    "x": 75.555555555555557,
+    "y": 120,
+    "z": 4000,
+    "height": 373.33333333333331,
+    "width": 594.44444444444446,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "trend_daily"
+                    }
+                  },
+                  "Property": "Ngày"
+                }
+              },
+              "queryRef": "trend_daily.Ngày",
+              "nativeQueryRef": "Ngày",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "trend_daily"
+                        }
+                      },
+                      "Property": "TB kWh"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(trend_daily.TB kWh)",
+              "nativeQueryRef": "Average of TB kWh"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "trend_daily"
+                        }
+                      },
+                      "Property": "TB Trượt 7 Ngày"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(trend_daily.TB Trượt 7 Ngày)",
+              "nativeQueryRef": "Average of TB Trượt 7 Ngày"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "trend_daily"
+                        }
+                      },
+                      "Property": "TB Trượt 30 Ngày"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(trend_daily.TB Trượt 30 Ngày)",
+              "nativeQueryRef": "Average of TB Trượt 30 Ngày"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "trend_daily"
+                        }
+                      },
+                      "Property": "TB Trượt 90 Ngày"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(trend_daily.TB Trượt 90 Ngày)",
+              "nativeQueryRef": "Average of TB Trượt 90 Ngày"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "trend_daily"
+                        }
+                      },
+                      "Property": "Xu Hướng Tuyến Tính"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(trend_daily.Xu Hướng Tuyến Tính)",
+              "nativeQueryRef": "Average of Xu Hướng Tuyến Tính"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "trend_daily"
+                  }
+                },
+                "Property": "Ngày"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "lineStyles": [
+        {
+          "properties": {
+            "strokeShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "strokeLineJoin": {
+              "expr": {
+                "Literal": {
+                  "Value": "'round'"
+                }
+              }
+            },
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

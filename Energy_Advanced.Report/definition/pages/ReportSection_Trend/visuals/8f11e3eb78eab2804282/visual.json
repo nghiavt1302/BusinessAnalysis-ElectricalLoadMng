@@ -1,0 +1,66 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "8f11e3eb78eab2804282",
+  "position": {
+    "x": 997.77777777777771,
+    "y": 0,
+    "z": 8000,
+    "height": 113.33333333333333,
+    "width": 282.22222222222223,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "trend_daily"
+                        }
+                      },
+                      "Property": "Nhiệt Độ TB (°C)"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(trend_daily.Nhiệt Độ TB (°C))",
+              "nativeQueryRef": "Average of Nhiệt Độ TB (°C)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "trend_daily"
+                      }
+                    },
+                    "Property": "Nhiệt Độ TB (°C)"
+                  }
+                },
+                "Function": 1
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

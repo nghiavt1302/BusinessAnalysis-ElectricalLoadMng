@@ -1,0 +1,95 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "d4f61cc55d19d116fd6d",
+  "position": {
+    "x": 971.11111111111109,
+    "y": 0,
+    "z": 1000,
+    "height": 93.333333333333329,
+    "width": 308.88888888888886,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "top_peak_hours"
+                        }
+                      },
+                      "Property": "Hạng"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(top_peak_hours.Hạng)",
+              "nativeQueryRef": "Hạng"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "top_peak_hours"
+                        }
+                      },
+                      "Property": "Giờ"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(top_peak_hours.Giờ)",
+              "nativeQueryRef": "Giờ"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "top_peak_hours"
+                        }
+                      },
+                      "Property": "TB kWh"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(top_peak_hours.TB kWh)",
+              "nativeQueryRef": "Average of TB kWh"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "top_peak_hours"
+                    }
+                  },
+                  "Property": "Phân Loại"
+                }
+              },
+              "queryRef": "top_peak_hours.Phân Loại",
+              "nativeQueryRef": "Phân Loại"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

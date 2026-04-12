@@ -1,0 +1,113 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "eb2d96ed0034370ece36",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 77.777777777777771,
+    "width": 391.11111111111109,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "trend_daily"
+                    }
+                  },
+                  "Property": "Mô Hình R²"
+                }
+              },
+              "queryRef": "trend_daily.Mô Hình R²",
+              "nativeQueryRef": "Mô Hình R²"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "trend_daily"
+                    }
+                  },
+                  "Property": "Sai Số RMSE"
+                }
+              },
+              "queryRef": "trend_daily.Sai Số RMSE",
+              "nativeQueryRef": "Sai Số RMSE"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "trend_daily"
+                    }
+                  },
+                  "Property": "TB % Sai Số"
+                }
+              },
+              "queryRef": "trend_daily.TB % Sai Số",
+              "nativeQueryRef": "TB % Sai Số"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "trend_daily"
+                    }
+                  },
+                  "Property": "Giờ Cao Điểm"
+                }
+              },
+              "queryRef": "trend_daily.Giờ Cao Điểm",
+              "nativeQueryRef": "Giờ Cao Điểm"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Sum(correlation_flat.correlation)"
+          }
+        },
+        {
+          "properties": {
+            "backColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

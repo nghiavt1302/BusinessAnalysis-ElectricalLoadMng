@@ -1,0 +1,122 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "55e90b47ec5765540129",
+  "position": {
+    "x": 563.33333333333337,
+    "y": 440,
+    "z": 1000,
+    "height": 280,
+    "width": 716.66666666666663,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "hundredPercentStackedBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "feature_ranking"
+                    }
+                  },
+                  "Property": "Yếu Tố"
+                }
+              },
+              "queryRef": "feature_ranking.Yếu Tố",
+              "nativeQueryRef": "Yếu Tố",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "feature_ranking"
+                        }
+                      },
+                      "Property": "Trọng Số |β|"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(feature_ranking.Trọng Số |β|)",
+              "nativeQueryRef": "Average of Trọng Số |β|"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "feature_ranking"
+                      }
+                    },
+                    "Property": "Trọng Số |β|"
+                  }
+                },
+                "Function": 1
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "36881f8007c805c13409",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "feature_ranking"
+              }
+            },
+            "Property": "Yếu Tố"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d5872330b318b30e4d4d",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "feature_ranking"
+                  }
+                },
+                "Property": "Trọng Số |β|"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

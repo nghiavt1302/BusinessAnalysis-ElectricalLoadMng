@@ -1,0 +1,49 @@
+table correlation_flat
+	lineageTag: 5d56214e-3823-4233-9787-deb9dc6d5a17
+
+	column 'Yếu Tố X'
+		dataType: string
+		lineageTag: 35d395e5-b19e-421f-b3b7-adce21253297
+		sourceColumn: feature_x
+
+	column 'Yếu Tố Y'
+		dataType: string
+		lineageTag: 8aeca064-94b9-4fd5-876f-d535f3c1974e
+		sourceColumn: feature_y
+
+	column 'Tương Quan (r)'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: b848a9e2-779d-4261-b6d7-c1a281b1778c
+		sourceColumn: correlation
+
+	column 'Tương Quan Tuyệt Đối'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: de1e55b2-39ca-4732-8c69-bc22323d5cc6
+		sourceColumn: abs_correlation
+
+	column Hướng
+		dataType: string
+		lineageTag: a86b16bd-df1e-4f01-bee3-f2024810b683
+		sourceColumn: direction
+
+	column 'Độ Mạnh'
+		dataType: string
+		lineageTag: 5d8ede45-3c08-49c3-9d33-e9ea90af8fb4
+		sourceColumn: strength
+
+	partition correlation_flat = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("c:\\Users\\chibtl\\Downloads\\output\\powerbi_advanced\\correlation_heatmap_flat.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"feature_x", type text}, {"feature_y", type text}, {"correlation", type number}, {"abs_correlation", type number}, {"direction", type text}, {"strength", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

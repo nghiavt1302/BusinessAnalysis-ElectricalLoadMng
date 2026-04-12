@@ -1,0 +1,56 @@
+table peak_distribution
+	lineageTag: 80e3328b-7a90-4da6-b548-49933ce2593e
+
+	column Giờ
+		dataType: int64
+		lineageTag: 078d4d79-bf08-484b-b8ca-49a3aaa04370
+		sourceColumn: hour
+
+	column 'Tổng kWh'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 5e85308c-01b3-4e4b-9ab9-22549eea8e68
+		sourceColumn: total_kwh
+
+	column 'Số Lần Đọc'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 347f208e-83a3-49dd-83d1-e94c7eb22ede
+		sourceColumn: readings
+
+	column 'TB kWh'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 7c6dffac-76bf-4920-9921-c2f0e5c2a8f5
+		sourceColumn: avg_kwh
+
+	column 'Phân Loại Tải'
+		dataType: string
+		lineageTag: fc20747b-9087-4d37-9569-b8c60ffb6f0d
+		sourceColumn: load_category
+
+	column 'Hạng Tải'
+		dataType: int64
+		lineageTag: e4d14aab-d8df-48f8-8f0c-ec0a34aa8972
+		sourceColumn: load_rank
+
+	column '% So Với Đỉnh'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 7ad24ab6-00e8-42d1-99e3-62405a6c8527
+		sourceColumn: pct_of_peak
+
+	partition peak_distribution = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("c:\\Users\\chibtl\\Downloads\\output\\powerbi_advanced\\peak_load_distribution.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"hour", Int64.Type}, {"total_kwh", type number}, {"readings", type number}, {"avg_kwh", type number}, {"load_category", type text}, {"load_rank", Int64.Type}, {"pct_of_peak", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

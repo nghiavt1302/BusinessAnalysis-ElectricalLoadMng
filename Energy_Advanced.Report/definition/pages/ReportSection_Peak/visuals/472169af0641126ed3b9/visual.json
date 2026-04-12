@@ -1,0 +1,195 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "472169af0641126ed3b9",
+  "position": {
+    "x": 1,
+    "y": 504,
+    "z": 4000,
+    "height": 207,
+    "width": 1279,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "peak_by_day"
+                    }
+                  },
+                  "Property": "Tên Ngày"
+                }
+              },
+              "queryRef": "peak_by_day.Tên Ngày",
+              "nativeQueryRef": "Tên Ngày"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "peak_by_day"
+                    }
+                  },
+                  "Property": "Giờ Cao Điểm"
+                }
+              },
+              "queryRef": "peak_by_day.Giờ Cao Điểm",
+              "nativeQueryRef": "Giờ Cao Điểm"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "peak_by_day"
+                        }
+                      },
+                      "Property": "kWh Cao Điểm"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "peak_by_day.kWh Cao Điểm",
+              "nativeQueryRef": "Average of kWh Cao Điểm"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "peak_by_day"
+                    }
+                  },
+                  "Property": "Giờ Thấp Điểm"
+                }
+              },
+              "queryRef": "peak_by_day.Giờ Thấp Điểm",
+              "nativeQueryRef": "Giờ Thấp Điểm"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "peak_by_day"
+                        }
+                      },
+                      "Property": "kWh Thấp Điểm"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "peak_by_day.kWh Thấp Điểm",
+              "nativeQueryRef": "Average of kWh Thấp Điểm"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "peak_by_day"
+                        }
+                      },
+                      "Property": "Tỷ Lệ Đỉnh/Thấp"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "peak_by_day.Tỷ Lệ Đỉnh/Thấp",
+              "nativeQueryRef": "Average of Tỷ Lệ Đỉnh/Thấp"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "peak_by_day.Tên Ngày"
+          }
+        },
+        {
+          "properties": {
+            "backColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0.2
+                    }
+                  }
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

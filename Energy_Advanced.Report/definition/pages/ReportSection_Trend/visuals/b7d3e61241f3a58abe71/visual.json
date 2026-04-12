@@ -1,0 +1,90 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "b7d3e61241f3a58abe71",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 1000,
+    "height": 112.22222222222221,
+    "width": 358.88888888888886,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "trend_daily"
+                    }
+                  },
+                  "Property": "Tổng Tiêu Thụ"
+                }
+              },
+              "queryRef": "trend_daily.Tổng Tiêu Thụ",
+              "nativeQueryRef": "Tổng Tiêu Thụ",
+              "format": "G"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "trend_daily"
+                    }
+                  },
+                  "Property": "Tổng Tiêu Thụ"
+                }
+              },
+              "queryRef": "trend_daily.Tổng Tiêu Thụ",
+              "nativeQueryRef": "Tổng Tiêu Thụ",
+              "format": "G"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "trend_daily"
+                  }
+                },
+                "Property": "Tổng Tiêu Thụ"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

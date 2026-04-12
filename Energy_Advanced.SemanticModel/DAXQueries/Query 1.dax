@@ -1,0 +1,4 @@
+Total Consumption = SUM(trend_daily[total_kwh])
+Avg Daily kWh = AVERAGE(trend_daily[avg_kwh])
+Peak Hour Value = MAXX(hourly_pattern, hourly_pattern[avg_kwh])
+Peak Ratio = DIVIDE(MAX(peak_distribution[avg_kwh]), MIN(peak_distribution[avg_kwh]))

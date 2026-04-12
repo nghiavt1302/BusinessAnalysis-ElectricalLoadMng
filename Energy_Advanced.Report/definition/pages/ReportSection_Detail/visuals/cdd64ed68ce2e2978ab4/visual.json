@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "cdd64ed68ce2e2978ab4",
+  "position": {
+    "x": 888.88888888888891,
+    "y": 382.22222222222223,
+    "z": 2000,
+    "height": 182.22222222222223,
+    "width": 195.55555555555554,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "trend_daily"
+                    }
+                  },
+                  "Property": "Mô Hình R²"
+                }
+              },
+              "queryRef": "trend_daily.Mô Hình R²",
+              "nativeQueryRef": "Mô Hình R²"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "trend_daily"
+                  }
+                },
+                "Property": "Mô Hình R²"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "bc9f1e637c14cda864b2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "trend_daily"
+              }
+            },
+            "Property": "Mô Hình R²"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

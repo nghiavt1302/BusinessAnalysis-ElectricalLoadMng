@@ -1,0 +1,103 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "93708e2b65854e9cfc7c",
+  "position": {
+    "x": 9.9301784328937153,
+    "y": 0,
+    "z": 0,
+    "height": 290.95422808378589,
+    "width": 423.02560124127228,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "peak_distribution"
+                    }
+                  },
+                  "Property": "Giờ"
+                }
+              },
+              "queryRef": "peak_distribution.Giờ",
+              "nativeQueryRef": "Giờ",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "peak_distribution"
+                    }
+                  },
+                  "Property": "Phân Loại Tải"
+                }
+              },
+              "queryRef": "peak_distribution.Phân Loại Tải",
+              "nativeQueryRef": "Phân Loại Tải"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "peak_distribution"
+                        }
+                      },
+                      "Property": "TB kWh"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(peak_distribution.TB kWh)",
+              "nativeQueryRef": "Average of TB kWh"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "peak_distribution"
+                      }
+                    },
+                    "Property": "TB kWh"
+                  }
+                },
+                "Function": 1
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

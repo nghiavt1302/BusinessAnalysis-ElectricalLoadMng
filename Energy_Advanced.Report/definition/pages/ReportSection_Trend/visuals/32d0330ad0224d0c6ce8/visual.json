@@ -1,0 +1,85 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "32d0330ad0224d0c6ce8",
+  "position": {
+    "x": 702.22222222222217,
+    "y": 117.77777777777777,
+    "z": 5000,
+    "height": 373.33333333333331,
+    "width": 554.44444444444446,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "trend_monthly"
+                    }
+                  },
+                  "Property": "Năm-Tháng"
+                }
+              },
+              "queryRef": "trend_monthly.Năm-Tháng",
+              "nativeQueryRef": "Năm-Tháng",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "trend_monthly"
+                        }
+                      },
+                      "Property": "Tổng kWh"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(trend_monthly.Tổng kWh)",
+              "nativeQueryRef": "Tổng kWh"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "trend_monthly"
+                      }
+                    },
+                    "Property": "Tổng kWh"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

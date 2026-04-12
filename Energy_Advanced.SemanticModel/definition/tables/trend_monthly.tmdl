@@ -1,0 +1,91 @@
+table trend_monthly
+	lineageTag: cb3a9999-6366-431c-838c-9132effd39d9
+
+	column Năm-Tháng
+		dataType: string
+		lineageTag: 9a0b983e-d955-4045-8172-66d70950cc06
+		sourceColumn: year_month
+
+	column 'Tổng kWh'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 6f8a953c-86aa-4857-9936-568bc91a8209
+		sourceColumn: total_kwh
+
+	column 'TB kWh'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: b7f5b593-8dad-411b-9e18-06df90a4e89f
+		sourceColumn: avg_kwh
+
+	column 'Số Lần Đọc'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: f49c2373-3846-4fd4-b980-617f6e8090b4
+		sourceColumn: readings
+
+	column 'Nhiệt Độ TB (°C)'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 4fae2c21-7977-4655-8173-239d3a4be9b1
+		sourceColumn: avg_temp
+
+	column 'Chỉ Số Tháng'
+		dataType: int64
+		lineageTag: 2a8e8c5b-711c-4af4-a96b-c6808611af54
+		sourceColumn: month_index
+
+	column 'Xu Hướng Tuyến Tính'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: a2c605be-d4ad-41c9-bdfc-6b1d618cfd8a
+		sourceColumn: linear_trend
+
+	column 'Phần Dư Xu Hướng'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 7a8198c2-291a-41c4-b0a7-f2a14b224bf4
+		sourceColumn: trend_residual
+
+	column 'Thay Đổi MoM'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: b9a6fcf7-4528-46c8-96cd-17364d4f5a60
+		sourceColumn: mom_change
+
+	column '% Thay Đổi MoM'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 076c76b3-bdb0-4aef-8473-08f10fc5c6d3
+		sourceColumn: mom_pct_change
+
+	column 'Thay Đổi YoY'
+		dataType: string
+		lineageTag: 249c085d-089f-409b-8ea1-5405fb0770e7
+		summarizeBy: none
+		sourceColumn: yoy_change
+
+		annotation SummarizationSetBy = Automatic
+
+	column '% Thay Đổi YoY'
+		dataType: string
+		lineageTag: db87e58b-1b97-4abc-9f2c-d638b602c7de
+		summarizeBy: none
+		sourceColumn: yoy_pct_change
+
+		annotation SummarizationSetBy = Automatic
+
+	partition trend_monthly = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("c:\\Users\\chibtl\\Downloads\\output\\powerbi_advanced\\trend_monthly_analysis.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"year_month", type text}, {"total_kwh", type number}, {"avg_kwh", type number}, {"readings", type number}, {"avg_temp", type number}, {"month_index", Int64.Type}, {"linear_trend", type number}, {"trend_residual", type number}, {"mom_change", type number}, {"mom_pct_change", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

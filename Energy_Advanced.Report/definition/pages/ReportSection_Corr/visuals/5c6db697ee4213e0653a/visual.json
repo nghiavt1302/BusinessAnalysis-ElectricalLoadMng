@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "5c6db697ee4213e0653a",
+  "position": {
+    "x": 563.33333333333337,
+    "y": 0,
+    "z": 3002,
+    "height": 338.88888888888886,
+    "width": 716.66666666666663,
+    "tabOrder": 3002
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "predicted_actual"
+                    }
+                  },
+                  "Property": "kWh Thực Tế"
+                }
+              },
+              "queryRef": "Sum(predicted_actual.kWh Thực Tế)",
+              "nativeQueryRef": "kWh Thực Tế1",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "predicted_actual"
+                    }
+                  },
+                  "Property": "kWh Dự Đoán"
+                }
+              },
+              "queryRef": "Sum(predicted_actual.kWh Dự Đoán)",
+              "nativeQueryRef": "kWh Dự Đoán1"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b53832c019056a9841b2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "predicted_actual"
+              }
+            },
+            "Property": "kWh Thực Tế"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "09c107ba4e0d40690793",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "predicted_actual"
+              }
+            },
+            "Property": "kWh Dự Đoán"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

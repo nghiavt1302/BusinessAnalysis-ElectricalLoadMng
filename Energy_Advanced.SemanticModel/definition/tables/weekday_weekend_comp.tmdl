@@ -1,0 +1,51 @@
+table weekday_weekend_comp
+	lineageTag: fcb5d793-9325-4f69-aa02-696a26de0cf6
+
+	column Giờ
+		dataType: int64
+		lineageTag: efdaf382-020a-4ba8-a9c5-268dfee7792f
+		sourceColumn: hour
+
+	column 'TB Ngày Thường'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: bc9d4a5f-ace3-448e-bf36-8627b2841ccf
+		sourceColumn: weekday_avg
+
+	column 'TB Cuối Tuần'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 76ef38d9-0fe7-44a6-9d8a-2fe9969632af
+		sourceColumn: weekend_avg
+
+	column 'Chênh Lệch'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 0db54783-735f-4297-ad6a-e6158c8058df
+		sourceColumn: difference
+
+	column '% Chênh Lệch'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 5b25136f-5dec-4ff3-8215-1845e7224c8d
+		sourceColumn: pct_difference
+
+	column 'Cao Hơn Vào'
+		dataType: string
+		lineageTag: 7d071686-903f-4f3b-991e-f63fb68d6319
+		sourceColumn: higher_on
+
+	partition weekday_weekend_comp = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("c:\\Users\\chibtl\\Downloads\\output\\powerbi_advanced\\weekday_weekend_hourly_comparison.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"hour", Int64.Type}, {"weekday_avg", type number}, {"weekend_avg", type number}, {"difference", type number}, {"pct_difference", type number}, {"higher_on", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,53 @@
+table predicted_actual
+	lineageTag: 15f69ee4-f312-4899-ab14-2f52255cf53b
+
+	column Ngày
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 5a81e6d7-f093-4491-928d-5a7d0fbcfe3f
+		sourceColumn: date
+
+	column 'kWh Thực Tế'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 90257403-5140-4240-ae3d-1f181835519e
+		sourceColumn: actual_kwh
+
+	column 'kWh Dự Đoán'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: b99ab2aa-2b68-49c7-a498-be901a8b94eb
+		sourceColumn: predicted_kwh
+
+	column 'Phần Dư'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: c354766b-d6c0-475d-b410-ab5f520ad21d
+		sourceColumn: residual
+
+	column 'Phần Dư Tuyệt Đối'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 2adbeb88-9e8f-48ee-b763-29cacf8040b9
+		sourceColumn: abs_residual
+
+	column '% Sai Số'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 7ba79059-f761-4aa7-8f78-6c18a89b3180
+		sourceColumn: pct_error
+
+	partition predicted_actual = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("c:\\Users\\chibtl\\Downloads\\output\\powerbi_advanced\\predicted_vs_actual.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type datetime}, {"actual_kwh", type number}, {"predicted_kwh", type number}, {"residual", type number}, {"abs_residual", type number}, {"pct_error", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

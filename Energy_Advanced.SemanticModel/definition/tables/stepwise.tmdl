@@ -1,0 +1,45 @@
+table stepwise
+	lineageTag: d6327e6d-84d6-4d96-aa1c-3127b455d323
+
+	column Bước
+		dataType: int64
+		lineageTag: a1574724-53e8-4a68-8a4d-7bd53b1f7f5b
+		sourceColumn: step
+
+	column 'Yếu Tố Thêm'
+		dataType: string
+		lineageTag: 573ecbd9-0f21-418a-ac93-9021455b4fca
+		sourceColumn: feature_added
+
+	column 'R² Tích Lũy'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 33ddd6ce-1558-499a-86bc-4cae675c068b
+		sourceColumn: cumulative_r2
+
+	column 'R² Tăng Thêm'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 40927210-1223-4835-9272-20a900bcc9c4
+		sourceColumn: r2_increase
+
+	column '% R² Tăng'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: faf0b166-d20b-4424-bd37-168d2e87df57
+		sourceColumn: pct_r2_increase
+
+	partition stepwise = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("c:\\Users\\chibtl\\Downloads\\output\\powerbi_advanced\\stepwise_regression_results.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"step", Int64.Type}, {"feature_added", type text}, {"cumulative_r2", type number}, {"r2_increase", type number}, {"pct_r2_increase", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

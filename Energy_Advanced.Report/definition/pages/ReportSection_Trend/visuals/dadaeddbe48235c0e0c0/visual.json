@@ -1,0 +1,104 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "dadaeddbe48235c0e0c0",
+  "position": {
+    "x": 686.66666666666663,
+    "y": 501.11111111111109,
+    "z": 7000,
+    "height": 218.88888888888889,
+    "width": 547.77777777777771,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "weekday_weekend_comp"
+                    }
+                  },
+                  "Property": "Giờ"
+                }
+              },
+              "queryRef": "weekday_weekend_comp.Giờ",
+              "nativeQueryRef": "Giờ",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "weekday_weekend_comp"
+                        }
+                      },
+                      "Property": "TB Ngày Thường"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(weekday_weekend_comp.TB Ngày Thường)",
+              "nativeQueryRef": "TB Ngày Thường"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "weekday_weekend_comp"
+                        }
+                      },
+                      "Property": "TB Cuối Tuần"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(weekday_weekend_comp.TB Cuối Tuần)",
+              "nativeQueryRef": "TB Cuối Tuần"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "weekday_weekend_comp"
+                      }
+                    },
+                    "Property": "TB Ngày Thường"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,94 @@
+table feature_ranking
+	lineageTag: 7fd37343-795c-4467-8757-2b61c9993ca8
+
+	column 'Yếu Tố'
+		dataType: string
+		lineageTag: 3fd92795-56d4-4fc6-a5ea-678a2fe11022
+		sourceColumn: feature
+
+	column 'Hệ Số Pearson (r)'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 5d002557-90f2-401c-b1f9-6bb3c3964ed5
+		sourceColumn: pearson_r
+
+	column 'R² Đơn Biến'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 638eaed6-05e6-41a6-81f9-12263004fc31
+		sourceColumn: simple_r2
+
+	column 'Giá Trị P'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 92a8a281-5186-497e-99ec-c0d1ae55e95f
+		sourceColumn: p_value
+
+	column 'Có Ý Nghĩa'
+		dataType: string
+		lineageTag: 9112a834-f5f1-42ad-9f1a-2595672f66c4
+		sourceColumn: significant
+
+	column 'Trọng Số β'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 944daeb1-979b-4ffe-8eb2-dbcd30bce98a
+		sourceColumn: beta_weight
+
+	column 'Trọng Số |β|'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 7b5dad50-8203-4cd0-8767-ebbb64fee15f
+		sourceColumn: abs_beta_weight
+
+	column 'Đóng Góp R²'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 596dc276-ff5e-40f1-a74f-9b08267d86cc
+		sourceColumn: stepwise_r2_contribution
+
+	column 'Hạng Đơn'
+		dataType: int64
+		lineageTag: fdcf798e-fbbb-4303-a532-de8139776442
+		sourceColumn: rank_simple
+
+	column 'Hạng Đa'
+		dataType: int64
+		lineageTag: aafffacd-62f8-43ad-a787-a4e9a60fd454
+		sourceColumn: rank_multi
+
+	column 'Hạng Từng Bước'
+		dataType: int64
+		lineageTag: 9997677d-e899-4e72-aa9b-316c21f5a7a3
+		sourceColumn: rank_stepwise
+
+	column 'Điểm Tổng Hợp'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: abb23c61-b691-4a0b-851c-3d23e92c8247
+		sourceColumn: composite_score
+
+	column 'Xếp Hạng Cuối'
+		dataType: int64
+		lineageTag: 3d398d2b-36d8-444f-8059-6c84ccaad960
+		sourceColumn: final_rank
+
+	column 'Mô Tả'
+		dataType: string
+		lineageTag: e4cfebd3-84d8-4164-8225-f4ab02703c9b
+		sourceColumn: description
+
+	partition feature_ranking = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("c:\\Users\\chibtl\\Downloads\\output\\powerbi_advanced\\feature_importance_ranking.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"feature", type text}, {"pearson_r", type number}, {"simple_r2", type number}, {"p_value", type number}, {"significant", type text}, {"beta_weight", type number}, {"abs_beta_weight", type number}, {"stepwise_r2_contribution", type number}, {"rank_simple", Int64.Type}, {"rank_multi", Int64.Type}, {"rank_stepwise", Int64.Type}, {"composite_score", type number}, {"final_rank", Int64.Type}, {"description", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

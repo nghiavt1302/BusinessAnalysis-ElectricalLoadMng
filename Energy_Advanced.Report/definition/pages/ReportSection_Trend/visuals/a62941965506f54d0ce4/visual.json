@@ -1,0 +1,85 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "a62941965506f54d0ce4",
+  "position": {
+    "x": 60,
+    "y": 496.66666666666663,
+    "z": 6000,
+    "height": 223.33333333333331,
+    "width": 602.22222222222217,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "seasonal_pattern"
+                    }
+                  },
+                  "Property": "Mùa"
+                }
+              },
+              "queryRef": "seasonal_pattern.Mùa",
+              "nativeQueryRef": "Mùa",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "seasonal_pattern"
+                        }
+                      },
+                      "Property": "% Độ Lệch"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(seasonal_pattern.% Độ Lệch)",
+              "nativeQueryRef": "Average of % Độ Lệch"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "seasonal_pattern"
+                      }
+                    },
+                    "Property": "% Độ Lệch"
+                  }
+                },
+                "Function": 1
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

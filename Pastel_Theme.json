@@ -1,0 +1,73 @@
+{
+  "name": "Pastel Năng Lượng",
+  "dataColors": [
+    "#7FB3D8", "#82C9A1", "#F5D76E", "#F7A072",
+    "#B8A9C9", "#F2A0A0", "#7ECDC0", "#F4C36E",
+    "#98D1D1", "#DDA0DD", "#A8D8EA", "#FFB7B2"
+  ],
+  "background": "#F5F6FA",
+  "foreground": "#2C3E50",
+  "tableAccent": "#7FB3D8",
+  "good": "#82C9A1",
+  "neutral": "#F5D76E",
+  "bad": "#F2A0A0",
+  "maximum": "#F7A072",
+  "center": "#F5D76E",
+  "minimum": "#82C9A1",
+  "textClasses": {
+    "callout": {
+      "fontSize": 28,
+      "fontFace": "Segoe UI",
+      "color": "#2C3E50"
+    },
+    "title": {
+      "fontSize": 14,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#2C3E50"
+    },
+    "header": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#2C3E50"
+    },
+    "label": {
+      "fontSize": 10,
+      "fontFace": "Segoe UI",
+      "color": "#5D6D7E"
+    }
+  },
+  "visualStyles": {
+    "page": {
+      "*": {
+        "background": [
+          {
+            "properties": {
+              "color": "#F5F6FA",
+              "transparency": 0
+            }
+          }
+        ]
+      }
+    },
+    "card": {
+      "*": {
+        "labels": [
+          {
+            "properties": {
+              "color": "#2C3E50",
+              "fontSize": 24
+            }
+          }
+        ],
+        "categoryLabels": [
+          {
+            "properties": {
+              "color": "#7F8C8D",
+              "fontSize": 10
+            }
+          }
+        ]
+      }
+    }
+  }
+}

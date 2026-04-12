@@ -1,0 +1,237 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "e6c27f2a8da506eb7234",
+  "position": {
+    "x": 1.1111111111111112,
+    "y": 55.555555555555557,
+    "z": 3001,
+    "height": 337.77777777777777,
+    "width": 524.44444444444446,
+    "tabOrder": 3001
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "correlation_flat"
+                    }
+                  },
+                  "Property": "Yếu Tố Y"
+                }
+              },
+              "queryRef": "correlation_flat.Yếu Tố Y",
+              "nativeQueryRef": "Yếu Tố Y",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "correlation_flat"
+                    }
+                  },
+                  "Property": "Yếu Tố X"
+                }
+              },
+              "queryRef": "correlation_flat.Yếu Tố X",
+              "nativeQueryRef": "Yếu Tố X",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "correlation_flat"
+                        }
+                      },
+                      "Property": "Tương Quan (r)"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(correlation_flat.Tương Quan (r))",
+              "nativeQueryRef": "Average of Tương Quan (r)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "correlation_flat"
+                  }
+                },
+                "Property": "Yếu Tố X"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "FillRule": {
+                      "Input": {
+                        "Aggregation": {
+                          "Expression": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "correlation_flat"
+                                }
+                              },
+                              "Property": "Tương Quan (r)"
+                            }
+                          },
+                          "Function": 1
+                        }
+                      },
+                      "FillRule": {
+                        "linearGradient3": {
+                          "min": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#fad9d9'"
+                              }
+                            }
+                          },
+                          "mid": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'midColor'"
+                              }
+                            }
+                          },
+                          "max": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#99c2e0'"
+                              }
+                            }
+                          },
+                          "nullColoringStrategy": {
+                            "strategy": {
+                              "Literal": {
+                                "Value": "'asZero'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Sum(correlation_flat.Tương Quan (r))"
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "showExpandCollapseButtons": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d72a4c005dc78693b98c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "correlation_flat"
+              }
+            },
+            "Property": "Yếu Tố X"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7dc2139d53307d6b9b6b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "correlation_flat"
+              }
+            },
+            "Property": "Yếu Tố Y"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "cda86bceed2351e6c804",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "correlation_flat"
+                  }
+                },
+                "Property": "Tương Quan (r)"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

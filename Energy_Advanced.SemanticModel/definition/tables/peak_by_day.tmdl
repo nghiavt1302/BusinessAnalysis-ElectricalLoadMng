@@ -1,0 +1,84 @@
+table peak_by_day
+	lineageTag: 5a0b52a6-976f-4d3e-8f1d-d1d3bb3f9eb3
+
+	column 'Thứ (số)'
+		dataType: int64
+		lineageTag: b81de3a9-2001-4370-9720-2ad61aacb0b5
+		summarizeBy: none
+		sourceColumn: weekday
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tên Ngày'
+		dataType: string
+		lineageTag: ab780f1e-eac1-4490-9ef9-518301cea498
+		summarizeBy: none
+		sourceColumn: day_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Giờ Cao Điểm'
+		dataType: int64
+		lineageTag: 7c138a8b-d06e-42a2-b3aa-d5845489d378
+		summarizeBy: none
+		sourceColumn: peak_hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'kWh Cao Điểm'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 493e6be9-a1e9-41e7-b6e6-fd327b2d9549
+		summarizeBy: none
+		sourceColumn: peak_kwh
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Giờ Thấp Điểm'
+		dataType: int64
+		lineageTag: f76608ad-21c7-4d53-8e07-f837030195db
+		summarizeBy: none
+		sourceColumn: off_peak_hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'kWh Thấp Điểm'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: d2a3caf3-b47d-4cb9-99f8-3ddb6adc69b0
+		summarizeBy: none
+		sourceColumn: off_peak_kwh
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tỷ Lệ Đỉnh/Thấp'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 885719ca-8974-4ff9-97ea-a93e7f158965
+		summarizeBy: none
+		sourceColumn: peak_to_offpeak_ratio
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Loại Ngày'
+		dataType: string
+		lineageTag: 7021c99e-251e-4436-982d-9c7c9dd480be
+		summarizeBy: none
+		sourceColumn: day_type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition peak_by_day = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("c:\\Users\\chibtl\\Downloads\\output\\powerbi_advanced\\peak_hour_by_day.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"weekday", Int64.Type}, {"day_name", type text}, {"peak_hour", Int64.Type}, {"peak_kwh", type number}, {"off_peak_hour", Int64.Type}, {"off_peak_kwh", type number}, {"peak_to_offpeak_ratio", type number}, {"day_type", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

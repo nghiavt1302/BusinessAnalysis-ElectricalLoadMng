@@ -1,0 +1,242 @@
+table trend_daily
+	lineageTag: 88ce3255-ddf2-43b7-8285-53146b8bb2dc
+
+	measure 'Tổng Tiêu Thụ' = SUM(trend_daily[Tổng kWh])
+		lineageTag: d4f17fa6-b979-4195-9329-5397ae1136d8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TB Hàng Ngày' = AVERAGE(trend_daily[TB kWh])
+		formatString: 0.0000
+		lineageTag: 662152e9-547c-40d3-91c7-81ad88513956
+
+		annotation PBI_FormatHint = {"isGeneralNumber": true}
+
+	measure 'Tổng Số Ngày' = COUNTROWS(trend_daily)
+		formatString: #,##0
+		lineageTag: 5b52f268-a277-4197-8b09-84aa96864c7a
+
+		annotation PBI_FormatHint = {"isGeneralNumber": true}
+
+	measure 'Mô Hình R²' = 0.9517
+		formatString: 0.0%
+		lineageTag: e7502202-2ea1-41ac-81ef-7d77ddfce6d8
+
+		annotation PBI_FormatHint = {"isGeneralNumber": true}
+
+	measure 'Sai Số RMSE' = AVERAGE(predicted_actual[Phần Dư Tuyệt Đối])
+		formatString: 0.0000
+		lineageTag: 989b7b4c-3181-4738-a225-348c47c2dfe8
+
+		annotation PBI_FormatHint = {"isGeneralNumber": true}
+
+	measure 'TB % Sai Số' = AVERAGE(predicted_actual[% Sai Số])
+		formatString: 0.0%
+		lineageTag: 547bd399-30d8-4ed4-bde9-50fc305bd752
+
+		annotation PBI_FormatHint = {"isGeneralNumber": true}
+
+	measure 'Giờ Cao Điểm' = "18:00"
+		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+
+		annotation PBI_FormatHint = {"isGeneralNumber": true}
+
+	measure 'Tỷ Lệ Đỉnh/Thấp' = DIVIDE(MAX(peak_distribution[TB kWh]), MIN(peak_distribution[TB kWh]))
+		formatString: 0.00
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678901
+
+		annotation PBI_FormatHint = {"isGeneralNumber": true}
+
+	column Ngày
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: f2cc3f04-38bd-4696-8eaf-84481f6ff88a
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tổng kWh'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 149f1397-e19d-4767-9b45-ba9a94fd673f
+		summarizeBy: sum
+		sourceColumn: total_kwh
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TB kWh'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 3fa0b328-44b2-485d-b9fa-f64b25b7a317
+		summarizeBy: sum
+		sourceColumn: avg_kwh
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TB Trượt 7 Ngày'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: b2ba8919-348e-40c9-ae48-72eec27828c1
+		summarizeBy: sum
+		sourceColumn: ma_7d
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TB Trượt 14 Ngày'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: eb2f1661-9a2a-4f47-bdcc-406d5357663d
+		summarizeBy: sum
+		sourceColumn: ma_14d
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TB Trượt 30 Ngày'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 76659ba6-e800-4e91-bb6a-726e957b8e3a
+		summarizeBy: sum
+		sourceColumn: ma_30d
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TB Trượt 90 Ngày'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: c0db99ed-af18-4256-bfba-d9e7aa5345c2
+		summarizeBy: sum
+		sourceColumn: ma_90d
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Làm Mượt Hàm Mũ'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 2dbe7771-277e-4fec-9f23-5aa5614c06c3
+		summarizeBy: sum
+		sourceColumn: exp_smooth
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Xu Hướng Tuyến Tính'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 748c5785-1412-4518-b40d-48ba4768df1c
+		summarizeBy: sum
+		sourceColumn: linear_trend
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Phần Dư Xu Hướng'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: f48543a2-c530-41ad-b5c0-b98ef267f024
+		summarizeBy: sum
+		sourceColumn: trend_residual
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nhiệt Độ TB (°C)'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 336a5f4e-04f7-4741-9140-538e5ddc7bb6
+		summarizeBy: sum
+		sourceColumn: avg_temp
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Loại Ngày'
+		dataType: string
+		lineageTag: 957ba822-6e88-4e78-ba9c-86dd847876fe
+		summarizeBy: none
+		sourceColumn: day_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mùa
+		dataType: string
+		lineageTag: 2eee806c-0883-47f2-ba20-d48d89f85781
+		summarizeBy: none
+		sourceColumn: season
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Thứ (số)'
+		dataType: string
+		lineageTag: d1d4dfdb-0087-4a37-a716-54b98564d4a6
+		summarizeBy: none
+		sourceColumn: weekday
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cuối Tuần'
+		dataType: string
+		lineageTag: 75048e6f-bcf4-414b-84dc-9210799072c0
+		summarizeBy: none
+		sourceColumn: is_weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tháng
+		dataType: string
+		lineageTag: 69988302-264a-4c2e-a7ae-378eb0790409
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Năm
+		dataType: string
+		lineageTag: 5ae71185-7508-4480-9e09-f1fbf5381b9c
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tên Ngày'
+		dataType: string
+		lineageTag: e9e63d2b-1956-4fb2-8195-98b23ce67c43
+		summarizeBy: none
+		sourceColumn: day_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Chỉ Số Ngày'
+		dataType: string
+		lineageTag: 4f782b46-1392-4ada-9c3a-782eda1e6e6b
+		summarizeBy: none
+		sourceColumn: day_index
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ngày Trong Năm'
+		dataType: string
+		lineageTag: c25f9572-73d1-439f-b55f-f3c1b97c4487
+		summarizeBy: none
+		sourceColumn: day_of_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column '% Thay Đổi 30 Ngày'
+		dataType: string
+		lineageTag: 047722d4-1be4-4c48-a526-8c829349649c
+		summarizeBy: none
+		sourceColumn: pct_change_30d
+
+		annotation SummarizationSetBy = Automatic
+
+	partition trend_daily = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("c:\\Users\\chibtl\\Downloads\\output\\powerbi_advanced\\trend_daily_analysis.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type datetime}, {"total_kwh", type number}, {"avg_kwh", type number}, {"ma_7d", type number}, {"ma_14d", type number}, {"ma_30d", type number}, {"ma_90d", type number}, {"exp_smooth", type number}, {"linear_trend", type number}, {"trend_residual", type number}, {"avg_temp", type number}, {"day_type", type text}, {"season", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

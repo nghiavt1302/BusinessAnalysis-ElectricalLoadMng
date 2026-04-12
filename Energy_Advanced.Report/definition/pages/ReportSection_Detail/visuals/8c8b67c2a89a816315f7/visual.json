@@ -1,0 +1,117 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "8c8b67c2a89a816315f7",
+  "position": {
+    "x": 0,
+    "y": 293.933281613654,
+    "z": 1000,
+    "height": 425.07370054305659,
+    "width": 735.82622187742436,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "predicted_actual"
+                    }
+                  },
+                  "Property": "Ngày"
+                }
+              },
+              "queryRef": "predicted_actual.Ngày",
+              "nativeQueryRef": "Ngày",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "predicted_actual"
+                        }
+                      },
+                      "Property": "Phần Dư"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(predicted_actual.Phần Dư)",
+              "nativeQueryRef": "Average of Phần Dư"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "predicted_actual"
+                  }
+                },
+                "Property": "Ngày"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2aa244f0a250c0e107c2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "predicted_actual"
+              }
+            },
+            "Property": "Ngày"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "298780dd326e7e200d33",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "predicted_actual"
+                  }
+                },
+                "Property": "Phần Dư"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

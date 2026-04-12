@@ -1,0 +1,28 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["trend_daily", "trend_monthly", "hourly_pattern", "peak_distribution", "heatmap_enhanced", "peak_by_day", "top_peak_hours", "correlation_flat", "feature_ranking", "stepwise", "predicted_actual", "seasonal_pattern", "weekday_weekend_comp"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table trend_daily
+ref table trend_monthly
+ref table hourly_pattern
+ref table peak_distribution
+ref table heatmap_enhanced
+ref table peak_by_day
+ref table top_peak_hours
+ref table correlation_flat
+ref table feature_ranking
+ref table stepwise
+ref table predicted_actual
+ref table seasonal_pattern
+ref table weekday_weekend_comp
+

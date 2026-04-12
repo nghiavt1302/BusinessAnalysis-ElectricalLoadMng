@@ -1,0 +1,66 @@
+table seasonal_pattern
+	lineageTag: b3a3dc14-ecb1-4159-b60f-e0ff4bc6ff65
+
+	column Mùa
+		dataType: string
+		lineageTag: b575eb62-20fd-4e66-92ba-15f62c947ab8
+		sourceColumn: season
+
+	column 'Tổng kWh'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: f0f8abfd-327d-476f-b339-6d31cc27d77d
+		sourceColumn: total_kwh
+
+	column 'Số Lần Đọc'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 27d00511-9088-4feb-af65-4ab29a6b9c80
+		sourceColumn: readings
+
+	column 'TB kWh'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: ac5c99a7-314d-4338-bb50-376db2953276
+		sourceColumn: avg_kwh
+
+	column '% Tổng'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: ce225852-abe4-4827-8eb9-67a1dece1f31
+		sourceColumn: pct_of_total
+
+	column 'Độ Lệch'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 4935d87a-a178-4282-880b-0790f377d914
+		sourceColumn: deviation
+
+	column '% Độ Lệch'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 6fc3afd6-fbc3-4d75-b29d-9007268a9ea8
+		sourceColumn: pct_deviation
+
+	column 'Thứ Tự'
+		dataType: string
+		lineageTag: 22f86d5c-f067-4376-9493-ca1d2dad8ed3
+		summarizeBy: none
+		sourceColumn: order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition seasonal_pattern = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("c:\\Users\\chibtl\\Downloads\\output\\powerbi_advanced\\seasonal_pattern_analysis.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"season", type text}, {"total_kwh", type number}, {"readings", type number}, {"avg_kwh", type number}, {"pct_of_total", type number}, {"deviation", type number}, {"pct_deviation", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

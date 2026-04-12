@@ -1,0 +1,104 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "9f0bbbe3a2ff3ae3c658",
+  "position": {
+    "x": 431.11111111111109,
+    "y": 0,
+    "z": 3000,
+    "height": 261.11111111111109,
+    "width": 583.33333333333337,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "hundredPercentStackedBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "peak_by_day"
+                    }
+                  },
+                  "Property": "Tên Ngày"
+                }
+              },
+              "queryRef": "peak_by_day.Tên Ngày",
+              "nativeQueryRef": "Tên Ngày",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "peak_by_day"
+                        }
+                      },
+                      "Property": "kWh Thấp Điểm"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "CountNonNull(peak_by_day.kWh Thấp Điểm)",
+              "nativeQueryRef": "Average of kWh Thấp Điểm"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "peak_by_day"
+                        }
+                      },
+                      "Property": "kWh Cao Điểm"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "CountNonNull(peak_by_day.kWh Cao Điểm)",
+              "nativeQueryRef": "Average of kWh Cao Điểm"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "peak_by_day"
+                      }
+                    },
+                    "Property": "kWh Thấp Điểm"
+                  }
+                },
+                "Function": 1
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

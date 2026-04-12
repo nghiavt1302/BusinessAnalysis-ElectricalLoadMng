@@ -1,0 +1,50 @@
+table top_peak_hours
+	lineageTag: 17478ce7-0088-415a-b981-6f27741fd456
+
+	column Giờ
+		dataType: int64
+		lineageTag: b211189a-1872-40cb-adc2-b7600943dccb
+		sourceColumn: hour
+
+	column 'Tổng kWh'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: f683a5b5-5640-4ac8-bc84-2a174c397534
+		sourceColumn: total_kwh
+
+	column 'Số Lần Đọc'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 191ff83e-ec46-4476-9e5d-43f23557588c
+		sourceColumn: readings
+
+	column 'TB kWh'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 4ab48090-09ea-4cc4-8385-4fabd4748efc
+		sourceColumn: avg_kwh
+
+	column Hạng
+		dataType: int64
+		lineageTag: a08b2719-e80c-4e02-8018-1de613aef092
+		sourceColumn: rank
+
+	column 'Phân Loại'
+		dataType: string
+		lineageTag: 31aa2974-c40c-4222-95b0-708990bca164
+		sourceColumn: category
+
+	partition top_peak_hours = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("c:\\Users\\chibtl\\Downloads\\output\\powerbi_advanced\\top_peak_hours.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"hour", Int64.Type}, {"total_kwh", type number}, {"readings", type number}, {"avg_kwh", type number}, {"rank", Int64.Type}, {"category", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

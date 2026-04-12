@@ -1,0 +1,67 @@
+table hourly_pattern
+	lineageTag: 17c4d565-6872-4957-b215-90c402c23db5
+
+	column Giờ
+		dataType: int64
+		lineageTag: cf8a5748-620a-4664-ac6e-5950a1a93efe
+		sourceColumn: hour
+
+	column 'Tổng kWh'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 6d0cbd3a-8b15-427a-83c0-c94c4b7ff79e
+		sourceColumn: total_kwh
+
+	column 'Số Lần Đọc'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 8df03b79-2932-48f3-997b-2bae30b9c3d1
+		sourceColumn: readings
+
+	column 'TB kWh'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: b81fbdab-fa7c-462f-9bbf-e618b589dba4
+		sourceColumn: avg_kwh
+
+	column 'Khung Giờ'
+		dataType: string
+		lineageTag: 6e848d8e-868a-424d-9dde-30c55e4b86b4
+		sourceColumn: period
+
+	column 'Là Cao Điểm'
+		dataType: int64
+		lineageTag: 6f4c652c-cd33-40c3-a109-2a806ce78f3f
+		sourceColumn: is_peak
+
+	column 'Là Thấp Điểm'
+		dataType: int64
+		lineageTag: cd1ac93a-8ac3-4adb-8669-8775a887e2e8
+		sourceColumn: is_off_peak
+
+	column '% So Với Đỉnh'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: afd25fb2-0fb0-4721-8bd5-d3d95f215182
+		sourceColumn: pct_of_max
+
+	column 'Chuẩn Hóa'
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 0e386c61-4af8-4445-9919-43cd0de543e9
+		sourceColumn: normalized
+
+	partition hourly_pattern = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("c:\\Users\\chibtl\\Downloads\\output\\powerbi_advanced\\hourly_consumption_pattern.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"hour", Int64.Type}, {"total_kwh", type number}, {"readings", type number}, {"avg_kwh", type number}, {"period", type text}, {"is_peak", Int64.Type}, {"is_off_peak", Int64.Type}, {"pct_of_max", type number}, {"normalized", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

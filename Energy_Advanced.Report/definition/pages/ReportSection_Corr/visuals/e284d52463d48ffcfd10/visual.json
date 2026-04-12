@@ -1,0 +1,122 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "e284d52463d48ffcfd10",
+  "position": {
+    "x": 0,
+    "y": 411.11111111111109,
+    "z": 2000,
+    "height": 308.88888888888886,
+    "width": 555.55555555555554,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "stepwise"
+                    }
+                  },
+                  "Property": "Yếu Tố Thêm"
+                }
+              },
+              "queryRef": "stepwise.Yếu Tố Thêm",
+              "nativeQueryRef": "Yếu Tố Thêm",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "stepwise"
+                        }
+                      },
+                      "Property": "R² Tăng Thêm"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(stepwise.R² Tăng Thêm)",
+              "nativeQueryRef": "Average of R² Tăng Thêm"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "stepwise"
+                      }
+                    },
+                    "Property": "R² Tăng Thêm"
+                  }
+                },
+                "Function": 1
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "5f1b6e27ed1be80520ee",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "stepwise"
+              }
+            },
+            "Property": "Yếu Tố Thêm"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "05f6c145b30708a6470d",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "stepwise"
+                  }
+                },
+                "Property": "R² Tăng Thêm"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
