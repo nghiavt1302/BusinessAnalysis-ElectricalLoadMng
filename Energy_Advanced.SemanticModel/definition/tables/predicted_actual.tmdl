@@ -5,37 +5,60 @@ table predicted_actual
 		dataType: dateTime
 		formatString: yyyy-MM-dd
 		lineageTag: 5a81e6d7-f093-4491-928d-5a7d0fbcfe3f
+		summarizeBy: none
 		sourceColumn: date
+
+		variation Variation
+			isDefault
+			relationship: c804e59f-cbb8-44e2-917a-36da37dce833
+			defaultHierarchy: LocalDateTable_15152dee-a095-422b-8ef0-43d86dd1c52a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'kWh Thực Tế'
 		dataType: double
 		formatString: 0.0000
 		lineageTag: 90257403-5140-4240-ae3d-1f181835519e
+		summarizeBy: sum
 		sourceColumn: actual_kwh
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'kWh Dự Đoán'
 		dataType: double
 		formatString: 0.0000
 		lineageTag: b99ab2aa-2b68-49c7-a498-be901a8b94eb
+		summarizeBy: sum
 		sourceColumn: predicted_kwh
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Phần Dư'
 		dataType: double
 		formatString: 0.0000
 		lineageTag: c354766b-d6c0-475d-b410-ab5f520ad21d
+		summarizeBy: sum
 		sourceColumn: residual
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Phần Dư Tuyệt Đối'
 		dataType: double
 		formatString: 0.0000
 		lineageTag: 2adbeb88-9e8f-48ee-b763-29cacf8040b9
+		summarizeBy: sum
 		sourceColumn: abs_residual
+
+		annotation SummarizationSetBy = Automatic
 
 	column '% Sai Số'
 		dataType: double
 		formatString: 0.0000
 		lineageTag: 7ba79059-f761-4aa7-8f78-6c18a89b3180
+		summarizeBy: sum
 		sourceColumn: pct_error
+
+		annotation SummarizationSetBy = Automatic
 
 	partition predicted_actual = m
 		mode: import

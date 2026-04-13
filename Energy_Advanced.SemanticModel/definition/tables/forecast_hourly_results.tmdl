@@ -5,31 +5,51 @@ table forecast_hourly_results
 		dataType: dateTime
 		formatString: General Date
 		lineageTag: a1b2c3d4-0001-0001-0002-0123456789ab
+		summarizeBy: none
 		sourceColumn: DateHour
+
+		variation Variation
+			isDefault
+			relationship: 782fa158-244f-4f5d-b0de-3995df02ddf6
+			defaultHierarchy: LocalDateTable_bdbd9ec3-31f2-4bb0-b8c1-b7cc4dca4e0a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
 
 	column Actual_kwh
 		dataType: double
 		formatString: 0.0000
 		lineageTag: a1b2c3d4-0001-0001-0003-0123456789ab
+		summarizeBy: sum
 		sourceColumn: Actual_kwh
+
+		annotation SummarizationSetBy = Automatic
 
 	column Pred_Arima
 		dataType: double
 		formatString: 0.0000
 		lineageTag: a1b2c3d4-0001-0001-0004-0123456789ab
+		summarizeBy: sum
 		sourceColumn: Pred_Arima
+
+		annotation SummarizationSetBy = Automatic
 
 	column Pred_Sarima
 		dataType: double
 		formatString: 0.0000
 		lineageTag: a1b2c3d4-0001-0001-0005-0123456789ab
+		summarizeBy: sum
 		sourceColumn: Pred_Sarima
+
+		annotation SummarizationSetBy = Automatic
 
 	column Pred_Prophet
 		dataType: double
 		formatString: 0.0000
 		lineageTag: a1b2c3d4-0001-0001-0006-0123456789ab
+		summarizeBy: sum
 		sourceColumn: Pred_Prophet
+
+		annotation SummarizationSetBy = Automatic
 
 	partition forecast_hourly_results = m
 		mode: import

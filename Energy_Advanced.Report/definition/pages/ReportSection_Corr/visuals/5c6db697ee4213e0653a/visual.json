@@ -4,10 +4,10 @@
   "position": {
     "x": 563.33333333333337,
     "y": 0,
-    "z": 3002,
+    "z": 4000,
     "height": 338.88888888888886,
     "width": 716.66666666666663,
-    "tabOrder": 3002
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "scatterChart",
@@ -53,37 +53,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "b53832c019056a9841b2",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "predicted_actual"
-              }
-            },
-            "Property": "kWh Thực Tế"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "09c107ba4e0d40690793",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "predicted_actual"
-              }
-            },
-            "Property": "kWh Dự Đoán"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

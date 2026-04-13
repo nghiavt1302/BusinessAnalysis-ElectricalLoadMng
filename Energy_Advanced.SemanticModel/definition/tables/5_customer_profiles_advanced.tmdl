@@ -1,0 +1,89 @@
+table 5_customer_profiles_advanced
+	lineageTag: 8983cf9f-15e1-486f-928b-c8a02ddb6243
+
+	column meter_id
+		dataType: string
+		lineageTag: d08525fc-696a-4fa2-a0a3-2f2c8de7e204
+		summarizeBy: none
+		sourceColumn: meter_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_kwh
+		dataType: double
+		lineageTag: 42987e94-2036-4a26-99db-2b33b7c92667
+		summarizeBy: sum
+		sourceColumn: total_kwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column peak_kwh
+		dataType: double
+		lineageTag: a0dace16-f60b-41e9-86f2-6ac2301776c8
+		summarizeBy: sum
+		sourceColumn: peak_kwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column peak_ratio
+		dataType: double
+		lineageTag: 2bcea5b8-ae93-4436-8e1d-23ef1f0e583f
+		summarizeBy: sum
+		sourceColumn: peak_ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cluster_name
+		dataType: string
+		lineageTag: 9db3c7cb-1f91-468c-b008-8709f6ad38e5
+		summarizeBy: none
+		sourceColumn: cluster_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column cooling_load
+		dataType: double
+		lineageTag: f1539103-a592-4857-aee1-39796f3942d8
+		summarizeBy: sum
+		sourceColumn: cooling_load
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column base_load
+		dataType: double
+		lineageTag: e903893a-3361-4514-bd8d-132a59bef6a7
+		summarizeBy: sum
+		sourceColumn: base_load
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column policy_level
+		dataType: string
+		lineageTag: 8e3598f5-df15-4305-a1b3-d425a8f719d0
+		summarizeBy: none
+		sourceColumn: policy_level
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 5_customer_profiles_advanced = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("F:\study\business_analysis_IT4818\5_customer_profiles_advanced.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"meter_id", type text}, {"total_kwh", type number}, {"peak_kwh", type number}, {"peak_ratio", type number}, {"cluster_name", type text}, {"cooling_load", type number}, {"base_load", type number}, {"policy_level", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

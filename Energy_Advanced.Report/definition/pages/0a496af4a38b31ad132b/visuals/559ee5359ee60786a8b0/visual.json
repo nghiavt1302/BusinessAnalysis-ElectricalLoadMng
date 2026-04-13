@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "e284d52463d48ffcfd10",
+  "name": "559ee5359ee60786a8b0",
   "position": {
-    "x": 0,
-    "y": 411.11111111111109,
-    "z": 2000,
-    "height": 308.88888888888886,
-    "width": 555.55555555555554,
-    "tabOrder": 2000
+    "x": 10.210297316896302,
+    "y": 0,
+    "z": 0,
+    "height": 280.319071791153,
+    "width": 630.253807106599,
+    "tabOrder": 0
   },
   "visual": {
-    "visualType": "columnChart",
+    "visualType": "lineChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,15 +20,33 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "stepwise"
+                      "Entity": "4_kmeans_hourly_shapes"
                     }
                   },
-                  "Property": "Yếu Tố Thêm"
+                  "Property": "hour"
                 }
               },
-              "queryRef": "stepwise.Yếu Tố Thêm",
-              "nativeQueryRef": "Yếu Tố Thêm",
+              "queryRef": "4_kmeans_hourly_shapes.hour",
+              "nativeQueryRef": "hour",
               "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "4_kmeans_hourly_shapes"
+                    }
+                  },
+                  "Property": "cluster_name"
+                }
+              },
+              "queryRef": "4_kmeans_hourly_shapes.cluster_name",
+              "nativeQueryRef": "cluster_name"
             }
           ]
         },
@@ -41,17 +59,17 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "stepwise"
+                          "Entity": "4_kmeans_hourly_shapes"
                         }
                       },
-                      "Property": "R² Tăng Thêm"
+                      "Property": "avg_kwh"
                     }
                   },
-                  "Function": 1
+                  "Function": 0
                 }
               },
-              "queryRef": "Sum(stepwise.R² Tăng Thêm)",
-              "nativeQueryRef": "Average of R² Tăng Thêm"
+              "queryRef": "Sum(4_kmeans_hourly_shapes.avg_kwh)",
+              "nativeQueryRef": "avg_kwh"
             }
           ]
         }
@@ -65,13 +83,13 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "stepwise"
+                        "Entity": "4_kmeans_hourly_shapes"
                       }
                     },
-                    "Property": "R² Tăng Thêm"
+                    "Property": "avg_kwh"
                   }
                 },
-                "Function": 1
+                "Function": 0
               }
             },
             "direction": "Descending"

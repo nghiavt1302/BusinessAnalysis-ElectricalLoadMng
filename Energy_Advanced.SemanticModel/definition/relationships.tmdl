@@ -1,0 +1,35 @@
+relationship 0ee73ce5-4031-4f05-81a4-520bac45945b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: trend_daily.Ngày
+	toColumn: LocalDateTable_3383b3d2-7eac-449c-8bc0-606ec2835304.Date
+
+relationship c804e59f-cbb8-44e2-917a-36da37dce833
+	joinOnDateBehavior: datePartOnly
+	fromColumn: predicted_actual.Ngày
+	toColumn: LocalDateTable_15152dee-a095-422b-8ef0-43d86dd1c52a.Date
+
+relationship 782fa158-244f-4f5d-b0de-3995df02ddf6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: forecast_hourly_results.DateHour
+	toColumn: LocalDateTable_bdbd9ec3-31f2-4bb0-b8c1-b7cc4dca4e0a.Date
+
+relationship 3d32d65c-16bc-4d9e-8b06-4c5590ff9a1d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: forecast_hourly_future.DateHour
+	toColumn: LocalDateTable_ffdbdd7b-bcf4-48a9-844e-26ae45373575.Date
+
+relationship b5d7421e-9e77-477f-bac0-bf7d2e7ee58f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 1_system_simulation.date
+	toColumn: LocalDateTable_0bcbfbcf-ca0f-40bc-960d-570cf519873c.Date
+
+relationship 9406214c-73ec-41d6-9f4f-3c125886ab43
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 2_daily_reduction_summary.date
+	toColumn: LocalDateTable_6e77e3e4-b930-4d87-8074-7e7b60ffe09b.Date
+
+relationship 0dcf531b-5e25-419f-a34c-a935325efad9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 3_weather_impact_daily.date
+	toColumn: LocalDateTable_bd13e7e8-25e8-4342-a238-9b4281b201d3.Date
+

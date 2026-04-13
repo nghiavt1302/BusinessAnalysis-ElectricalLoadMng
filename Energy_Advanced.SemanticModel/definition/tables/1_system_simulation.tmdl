@@ -1,0 +1,79 @@
+table 1_system_simulation
+	lineageTag: bb7f8505-b170-4294-8477-adc7dcf01861
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 510d33e5-7998-40b3-a50b-0cca62cab396
+		summarizeBy: none
+		sourceColumn: date
+
+		variation Variation
+			isDefault
+			relationship: b5d7421e-9e77-477f-bac0-bf7d2e7ee58f
+			defaultHierarchy: LocalDateTable_0bcbfbcf-ca0f-40bc-960d-570cf519873c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column hour
+		dataType: int64
+		formatString: 0
+		lineageTag: 37f1d10f-d23b-47d2-8e41-054012434630
+		summarizeBy: sum
+		sourceColumn: hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column kwh
+		dataType: double
+		lineageTag: acc6304a-758c-4594-be35-481c1815899c
+		summarizeBy: sum
+		sourceColumn: kwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column kwh_sim_5pct
+		dataType: double
+		lineageTag: 24561921-8240-4782-8318-c2b491e1e713
+		summarizeBy: sum
+		sourceColumn: kwh_sim_5pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column kwh_sim_10pct
+		dataType: double
+		lineageTag: acb8e541-d8f9-40b0-bb7c-ca6bd499f4fd
+		summarizeBy: sum
+		sourceColumn: kwh_sim_10pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_peak
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: cc6e31ab-89e8-43e1-84b9-74653a394101
+		summarizeBy: none
+		sourceColumn: is_peak
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 1_system_simulation = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("F:\study\business_analysis_IT4818\1_system_simulation.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"hour", Int64.Type}, {"kwh", type number}, {"kwh_sim_5pct", type number}, {"kwh_sim_10pct", type number}, {"is_peak", type logical}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

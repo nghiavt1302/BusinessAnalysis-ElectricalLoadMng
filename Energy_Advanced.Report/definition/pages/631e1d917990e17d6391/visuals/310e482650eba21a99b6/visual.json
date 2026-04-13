@@ -1,0 +1,66 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "310e482650eba21a99b6",
+  "position": {
+    "x": 669.238578680203,
+    "y": 289.60116026105874,
+    "z": 3000,
+    "height": 148.51341551849166,
+    "width": 280.319071791153,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "2_daily_reduction_summary"
+                        }
+                      },
+                      "Property": "daily_saved_kwh_10pct"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(2_daily_reduction_summary.daily_saved_kwh_10pct)",
+              "nativeQueryRef": "daily_saved_kwh_10pct"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "2_daily_reduction_summary"
+                      }
+                    },
+                    "Property": "daily_saved_kwh_10pct"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "e284d52463d48ffcfd10",
+  "name": "4bb4953536d20a927b7d",
   "position": {
     "x": 0,
-    "y": 411.11111111111109,
-    "z": 2000,
-    "height": 308.88888888888886,
-    "width": 555.55555555555554,
-    "tabOrder": 2000
+    "y": 280.319071791153,
+    "z": 1,
+    "height": 289.60116026105874,
+    "width": 640.46410442349531,
+    "tabOrder": 1
   },
   "visual": {
-    "visualType": "columnChart",
+    "visualType": "donutChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "stepwise"
+                      "Entity": "5_customer_profiles_advanced"
                     }
                   },
-                  "Property": "Yếu Tố Thêm"
+                  "Property": "policy_level"
                 }
               },
-              "queryRef": "stepwise.Yếu Tố Thêm",
-              "nativeQueryRef": "Yếu Tố Thêm",
+              "queryRef": "5_customer_profiles_advanced.policy_level",
+              "nativeQueryRef": "policy_level",
               "active": true
             }
           ]
@@ -41,17 +41,17 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "stepwise"
+                          "Entity": "5_customer_profiles_advanced"
                         }
                       },
-                      "Property": "R² Tăng Thêm"
+                      "Property": "meter_id"
                     }
                   },
-                  "Function": 1
+                  "Function": 5
                 }
               },
-              "queryRef": "Sum(stepwise.R² Tăng Thêm)",
-              "nativeQueryRef": "Average of R² Tăng Thêm"
+              "queryRef": "CountNonNull(5_customer_profiles_advanced.meter_id)",
+              "nativeQueryRef": "Count of meter_id"
             }
           ]
         }
@@ -65,13 +65,13 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "stepwise"
+                        "Entity": "5_customer_profiles_advanced"
                       }
                     },
-                    "Property": "R² Tăng Thêm"
+                    "Property": "meter_id"
                   }
                 },
-                "Function": 1
+                "Function": 5
               }
             },
             "direction": "Descending"

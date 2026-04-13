@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "631e1d917990e17d6391",
+  "displayName": "6. Simulating Reduce Load",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "pageBinding": {
+    "name": "da97d1d7eb471deeb056",
+    "type": "Default",
+    "parameters": []
+  }
+}

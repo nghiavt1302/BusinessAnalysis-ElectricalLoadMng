@@ -54,6 +54,11 @@ table trend_daily
 		summarizeBy: none
 		sourceColumn: date
 
+		variation Variation
+			isDefault
+			relationship: 0ee73ce5-4031-4f05-81a4-520bac45945b
+			defaultHierarchy: LocalDateTable_3383b3d2-7eac-449c-8bc0-606ec2835304.'Date Hierarchy'
+
 		annotation SummarizationSetBy = Automatic
 
 	column 'Tổng kWh'

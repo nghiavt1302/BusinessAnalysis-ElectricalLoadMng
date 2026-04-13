@@ -1,0 +1,71 @@
+table 3_weather_impact_daily
+	lineageTag: 50cb884a-b9ac-428e-8beb-ebde8b2f7e5e
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 77b35bfd-6979-407b-aaf7-2ec9e568bca4
+		summarizeBy: none
+		sourceColumn: date
+
+		variation Variation
+			isDefault
+			relationship: 0dcf531b-5e25-419f-a34c-a935325efad9
+			defaultHierarchy: LocalDateTable_bd13e7e8-25e8-4342-a238-9b4281b201d3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column kwh
+		dataType: double
+		lineageTag: 5acc0fd2-8ade-4680-a745-c0a89cb67669
+		summarizeBy: sum
+		sourceColumn: kwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column base_load
+		dataType: double
+		lineageTag: 847469ac-2f8d-4ad4-8bb2-8b1bd45303c1
+		summarizeBy: sum
+		sourceColumn: base_load
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cooling_load
+		dataType: double
+		lineageTag: 31cbc227-826d-4655-8c96-d0288ca5a615
+		summarizeBy: sum
+		sourceColumn: cooling_load
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column temp
+		dataType: double
+		lineageTag: d732a791-02e7-45fa-a6e3-0b0351750724
+		summarizeBy: sum
+		sourceColumn: temp
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 3_weather_impact_daily = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("F:\study\business_analysis_IT4818\3_weather_impact_daily.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"kwh", type number}, {"base_load", type number}, {"cooling_load", type number}, {"temp", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

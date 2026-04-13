@@ -6,7 +6,7 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["trend_daily", "trend_monthly", "hourly_pattern", "peak_distribution", "heatmap_enhanced", "peak_by_day", "top_peak_hours", "correlation_flat", "feature_ranking", "stepwise", "predicted_actual", "seasonal_pattern", "weekday_weekend_comp", "forecast_hourly_results", "forecast_hourly_metrics", "forecast_hourly_future"]
+annotation PBI_QueryOrder = ["trend_daily","trend_monthly","hourly_pattern","peak_distribution","heatmap_enhanced","peak_by_day","top_peak_hours","correlation_flat","feature_ranking","stepwise","predicted_actual","seasonal_pattern","weekday_weekend_comp","forecast_hourly_results","forecast_hourly_metrics","forecast_hourly_future","1_system_simulation","2_daily_reduction_summary","3_weather_impact_daily","4_kmeans_hourly_shapes","5_customer_profiles_advanced"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -28,4 +28,17 @@ ref table weekday_weekend_comp
 ref table forecast_hourly_results
 ref table forecast_hourly_metrics
 ref table forecast_hourly_future
+ref table DateTableTemplate_d765cec0-0260-4416-b1f5-2f9819f4386e
+ref table LocalDateTable_3383b3d2-7eac-449c-8bc0-606ec2835304
+ref table LocalDateTable_15152dee-a095-422b-8ef0-43d86dd1c52a
+ref table LocalDateTable_bdbd9ec3-31f2-4bb0-b8c1-b7cc4dca4e0a
+ref table LocalDateTable_ffdbdd7b-bcf4-48a9-844e-26ae45373575
+ref table 1_system_simulation
+ref table LocalDateTable_0bcbfbcf-ca0f-40bc-960d-570cf519873c
+ref table 2_daily_reduction_summary
+ref table LocalDateTable_6e77e3e4-b930-4d87-8074-7e7b60ffe09b
+ref table 3_weather_impact_daily
+ref table LocalDateTable_bd13e7e8-25e8-4342-a238-9b4281b201d3
+ref table 4_kmeans_hourly_shapes
+ref table 5_customer_profiles_advanced
 

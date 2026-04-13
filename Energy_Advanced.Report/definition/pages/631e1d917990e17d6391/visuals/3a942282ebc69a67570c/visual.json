@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "6fe0d6c12521055d1de2",
+  "name": "3a942282ebc69a67570c",
   "position": {
-    "x": 793,
+    "x": 9.8540497193263832,
     "y": 0,
-    "z": 2000,
-    "height": 395,
-    "width": 487,
-    "tabOrder": 1000
+    "z": 0,
+    "height": 280.01924619085804,
+    "width": 601.09703287890943,
+    "tabOrder": 0
   },
   "visual": {
-    "visualType": "lineClusteredColumnComboChart",
+    "visualType": "lineChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "forecast_hourly_metrics"
+                      "Entity": "1_system_simulation"
                     }
                   },
-                  "Property": "model"
+                  "Property": "hour"
                 }
               },
-              "queryRef": "forecast_hourly_metrics.model",
-              "nativeQueryRef": "model",
+              "queryRef": "1_system_simulation.hour",
+              "nativeQueryRef": "hour",
               "active": true
             }
           ]
@@ -41,17 +41,17 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "forecast_hourly_metrics"
+                          "Entity": "1_system_simulation"
                         }
                       },
-                      "Property": "RMSE"
+                      "Property": "kwh"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(forecast_hourly_metrics.RMSE)",
-              "nativeQueryRef": "RMSE"
+              "queryRef": "Sum(1_system_simulation.kwh)",
+              "nativeQueryRef": "kwh"
             },
             {
               "field": {
@@ -60,17 +60,17 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "forecast_hourly_metrics"
+                          "Entity": "1_system_simulation"
                         }
                       },
-                      "Property": "MAE"
+                      "Property": "kwh_sim_5pct"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(forecast_hourly_metrics.MAE)",
-              "nativeQueryRef": "MAE"
+              "queryRef": "Sum(1_system_simulation.kwh_sim_5pct)",
+              "nativeQueryRef": "kwh_sim_5pct"
             },
             {
               "field": {
@@ -79,17 +79,17 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "forecast_hourly_metrics"
+                          "Entity": "1_system_simulation"
                         }
                       },
-                      "Property": "MAPE"
+                      "Property": "kwh_sim_10pct"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(forecast_hourly_metrics.MAPE)",
-              "nativeQueryRef": "MAPE"
+              "queryRef": "Sum(1_system_simulation.kwh_sim_10pct)",
+              "nativeQueryRef": "kwh_sim_10pct"
             }
           ]
         }
@@ -103,10 +103,10 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "forecast_hourly_metrics"
+                        "Entity": "1_system_simulation"
                       }
                     },
-                    "Property": "RMSE"
+                    "Property": "kwh"
                   }
                 },
                 "Function": 0
@@ -117,41 +117,6 @@
         ],
         "isDefaultSort": true
       }
-    },
-    "visualContainerObjects": {
-      "title": [
-        {
-          "properties": {
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Đánh giá sai số mô hình'"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "subTitle": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Càng thấp càng tốt'"
-                }
-              }
-            }
-          }
-        }
-      ]
     },
     "drillFilterOtherVisuals": true
   }

@@ -4,10 +4,10 @@
   "position": {
     "x": 0,
     "y": 405,
-    "z": 1,
+    "z": 1000,
     "height": 315,
     "width": 783,
-    "tabOrder": 1
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "tableEx",
@@ -129,118 +129,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "80f7bded2c13698ccbb1",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "forecast_hourly_future"
-              }
-            },
-            "Property": "DateHour"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "6b4d43dd219a60a7931d",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "forecast_hourly_future"
-                  }
-                },
-                "Property": "Pred_Arima"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "781f477d1134260a1c12",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "forecast_hourly_future"
-                  }
-                },
-                "Property": "Pred_Prophet"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "509ef6f5a700e951a1a9",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "forecast_hourly_future"
-                  }
-                },
-                "Property": "Pred_Sarima"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "d717ef74aae800edba8b",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "forecast_hourly_future"
-                  }
-                },
-                "Property": "Prophet_Upper_CI"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "b4a7ebc19d164a552068",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "forecast_hourly_future"
-                  }
-                },
-                "Property": "Prophet_Lower_CI"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

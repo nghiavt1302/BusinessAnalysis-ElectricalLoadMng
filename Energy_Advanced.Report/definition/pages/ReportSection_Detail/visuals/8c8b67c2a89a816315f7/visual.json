@@ -76,42 +76,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "2aa244f0a250c0e107c2",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "predicted_actual"
-              }
-            },
-            "Property": "Ngày"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "298780dd326e7e200d33",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "predicted_actual"
-                  }
-                },
-                "Property": "Phần Dư"
-              }
-            },
-            "Function": 1
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

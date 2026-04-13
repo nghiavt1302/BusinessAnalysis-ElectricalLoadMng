@@ -1,0 +1,42 @@
+table 4_kmeans_hourly_shapes
+	lineageTag: e63d46d3-ae62-42e3-a376-4df96452a28b
+
+	column hour
+		dataType: int64
+		formatString: 0
+		lineageTag: a6fb8d32-3f38-4e0f-b6d0-ed0253848d79
+		summarizeBy: sum
+		sourceColumn: hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column cluster_name
+		dataType: string
+		lineageTag: 29983523-e92b-48c6-a393-a6f9380c1722
+		summarizeBy: none
+		sourceColumn: cluster_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_kwh
+		dataType: double
+		lineageTag: 200a2cb9-9f57-4cb7-bfe9-bb02e598b3ea
+		summarizeBy: sum
+		sourceColumn: avg_kwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 4_kmeans_hourly_shapes = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("F:\study\business_analysis_IT4818\4_kmeans_hourly_shapes.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"hour", Int64.Type}, {"cluster_name", type text}, {"avg_kwh", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

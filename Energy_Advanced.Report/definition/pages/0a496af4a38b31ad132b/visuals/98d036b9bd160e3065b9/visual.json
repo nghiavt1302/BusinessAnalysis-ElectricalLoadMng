@@ -1,0 +1,148 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "98d036b9bd160e3065b9",
+  "position": {
+    "x": 640.46410442349531,
+    "y": 0,
+    "z": 2,
+    "height": 720.29006526468447,
+    "width": 639.53589557650469,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "5_customer_profiles_advanced"
+                    }
+                  },
+                  "Property": "meter_id"
+                }
+              },
+              "queryRef": "5_customer_profiles_advanced.meter_id",
+              "nativeQueryRef": "meter_id",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "5_customer_profiles_advanced"
+                        }
+                      },
+                      "Property": "peak_kwh"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(5_customer_profiles_advanced.peak_kwh)",
+              "nativeQueryRef": "peak_kwh"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "5_customer_profiles_advanced"
+                        }
+                      },
+                      "Property": "total_kwh"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(5_customer_profiles_advanced.total_kwh)",
+              "nativeQueryRef": "total_kwh"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "5_customer_profiles_advanced"
+                        }
+                      },
+                      "Property": "cooling_load"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(5_customer_profiles_advanced.cooling_load)",
+              "nativeQueryRef": "cooling_load"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "5_customer_profiles_advanced"
+                        }
+                      },
+                      "Property": "peak_ratio"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(5_customer_profiles_advanced.peak_ratio)",
+              "nativeQueryRef": "peak_ratio"
+            }
+          ]
+        }
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "5_customer_profiles_advanced.meter_id"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "5_customer_profiles_advanced"
+                    }
+                  },
+                  "Property": "meter_id"
+                }
+              }
+            ],
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "drillFilterOtherVisuals": true
+  }
+}

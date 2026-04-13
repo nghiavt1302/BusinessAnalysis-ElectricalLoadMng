@@ -81,42 +81,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "36881f8007c805c13409",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "feature_ranking"
-              }
-            },
-            "Property": "Yếu Tố"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "d5872330b318b30e4d4d",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "feature_ranking"
-                  }
-                },
-                "Property": "Trọng Số |β|"
-              }
-            },
-            "Function": 1
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

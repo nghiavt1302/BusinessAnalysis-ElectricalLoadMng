@@ -5,37 +5,60 @@ table forecast_hourly_future
 		dataType: dateTime
 		formatString: General Date
 		lineageTag: a1b2c3d4-0003-0001-0002-0123456789ab
+		summarizeBy: none
 		sourceColumn: DateHour
+
+		variation Variation
+			isDefault
+			relationship: 3d32d65c-16bc-4d9e-8b06-4c5590ff9a1d
+			defaultHierarchy: LocalDateTable_ffdbdd7b-bcf4-48a9-844e-26ae45373575.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
 
 	column Pred_Arima
 		dataType: double
 		formatString: 0.0000
 		lineageTag: a1b2c3d4-0003-0001-0003-0123456789ab
+		summarizeBy: sum
 		sourceColumn: Pred_Arima
+
+		annotation SummarizationSetBy = Automatic
 
 	column Pred_Sarima
 		dataType: double
 		formatString: 0.0000
 		lineageTag: a1b2c3d4-0003-0001-0004-0123456789ab
+		summarizeBy: sum
 		sourceColumn: Pred_Sarima
+
+		annotation SummarizationSetBy = Automatic
 
 	column Pred_Prophet
 		dataType: double
 		formatString: 0.0000
 		lineageTag: a1b2c3d4-0003-0001-0005-0123456789ab
+		summarizeBy: sum
 		sourceColumn: Pred_Prophet
+
+		annotation SummarizationSetBy = Automatic
 
 	column Prophet_Lower_CI
 		dataType: double
 		formatString: 0.0000
 		lineageTag: a1b2c3d4-0003-0001-0006-0123456789ab
+		summarizeBy: sum
 		sourceColumn: Prophet_Lower_CI
+
+		annotation SummarizationSetBy = Automatic
 
 	column Prophet_Upper_CI
 		dataType: double
 		formatString: 0.0000
 		lineageTag: a1b2c3d4-0003-0001-0007-0123456789ab
+		summarizeBy: sum
 		sourceColumn: Prophet_Upper_CI
+
+		annotation SummarizationSetBy = Automatic
 
 	partition forecast_hourly_future = m
 		mode: import

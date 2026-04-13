@@ -52,23 +52,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "bc9f1e637c14cda864b2",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "trend_daily"
-              }
-            },
-            "Property": "Mô Hình R²"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -1,0 +1,133 @@
+table 2_daily_reduction_summary
+	lineageTag: a1afbd77-1d1b-45a5-8c95-ddd8db5c8d74
+
+	measure '% Tiết kiệm Ngày (10%)' = ```
+			
+			DIVIDE(
+			    SUM('2_daily_reduction_summary'[daily_saved_kwh_10pct]), 
+			    SUM('2_daily_reduction_summary'[total_kwh_baseline]),
+			    0
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 307837ba-8c25-45ab-8545-bb01c7010a3b
+
+	measure '% Tiết kiệm Ngày (5%)' = ```
+			
+			DIVIDE(
+			    SUM('2_daily_reduction_summary'[daily_saved_kwh_5pct]), 
+			    SUM('2_daily_reduction_summary'[total_kwh_baseline]),
+			    0
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8ca967c6-3e8e-44d4-954f-530c12a855db
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b2269422-ddf4-4072-972d-09e574de935f
+		summarizeBy: none
+		sourceColumn: date
+
+		variation Variation
+			isDefault
+			relationship: 9406214c-73ec-41d6-9f4f-3c125886ab43
+			defaultHierarchy: LocalDateTable_6e77e3e4-b930-4d87-8074-7e7b60ffe09b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column total_kwh_baseline
+		dataType: double
+		lineageTag: a7605a9c-7ae3-4b35-9a52-71f59d7045b8
+		summarizeBy: sum
+		sourceColumn: total_kwh_baseline
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_kwh_5pct
+		dataType: double
+		lineageTag: 242c471a-92e5-434f-aa56-aae4082bb7bd
+		summarizeBy: sum
+		sourceColumn: total_kwh_5pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_kwh_10pct
+		dataType: double
+		lineageTag: 3179f22d-aee4-4626-8db5-7a00362f894d
+		summarizeBy: sum
+		sourceColumn: total_kwh_10pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column max_peak_baseline
+		dataType: double
+		lineageTag: e1469b84-c4bb-41b5-a480-455d8fdb9fa9
+		summarizeBy: sum
+		sourceColumn: max_peak_baseline
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column max_peak_5pct
+		dataType: double
+		lineageTag: 80de0c75-e847-42ec-bd58-9da72ea30f39
+		summarizeBy: sum
+		sourceColumn: max_peak_5pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column max_peak_10pct
+		dataType: double
+		lineageTag: 91201d96-ca62-4ecb-beb5-0602b40483f9
+		summarizeBy: sum
+		sourceColumn: max_peak_10pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column daily_saved_kwh_5pct
+		dataType: double
+		lineageTag: a2987d3b-1bb9-4a94-b25c-6bd487634272
+		summarizeBy: sum
+		sourceColumn: daily_saved_kwh_5pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column daily_saved_kwh_10pct
+		dataType: double
+		lineageTag: 1ba1eef4-c8e7-4042-b8af-4a0a68ad0360
+		summarizeBy: sum
+		sourceColumn: daily_saved_kwh_10pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 2_daily_reduction_summary = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("F:\study\business_analysis_IT4818\2_daily_reduction_summary.csv"),[Delimiter=",", Columns=9, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"total_kwh_baseline", type number}, {"total_kwh_5pct", type number}, {"total_kwh_10pct", type number}, {"max_peak_baseline", type number}, {"max_peak_5pct", type number}, {"max_peak_10pct", type number}, {"daily_saved_kwh_5pct", type number}, {"daily_saved_kwh_10pct", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
