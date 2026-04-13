@@ -64,12 +64,28 @@ final_sys = pd.concat(sys_load_chunks).groupby(['date', 'hour']).sum().reset_ind
 final_sys['is_peak'] = final_sys['is_peak'] > 0 
 final_sys.to_csv('1_system_simulation.csv', index=False)
 
-daily_peak = final_sys[final_sys['is_peak']].groupby('date').agg({
-    'kwh': 'max', 'kwh_sim_5pct': 'max', 'kwh_sim_10pct': 'max'
-}).reset_index()
-daily_peak['reduce_5pct'] = daily_peak['kwh'] - daily_peak['kwh_sim_5pct']
-daily_peak['reduce_10pct'] = daily_peak['kwh'] - daily_peak['kwh_sim_10pct']
-daily_peak.to_csv('2_peak_reduction_summary.csv', index=False)
+# Max Peak Load
+daily_max = final_sys[final_sys['is_peak']].groupby('date').agg(
+    max_peak_baseline=('kwh', 'max'),
+    max_peak_5pct=('kwh_sim_5pct', 'max'),
+    max_peak_10pct=('kwh_sim_10pct', 'max')
+).reset_index()
+
+# Total Daily Load
+daily_sum = final_sys.groupby('date').agg(
+    total_kwh_baseline=('kwh', 'sum'),
+    total_kwh_5pct=('kwh_sim_5pct', 'sum'),
+    total_kwh_10pct=('kwh_sim_10pct', 'sum')
+).reset_index()
+
+# Merge 2 loads
+daily_summary = daily_sum.merge(daily_max, on='date')
+
+# Total kWh saved of the day
+daily_summary['daily_saved_kwh_5pct'] = daily_summary['total_kwh_baseline'] - daily_summary['total_kwh_5pct']
+daily_summary['daily_saved_kwh_10pct'] = daily_summary['total_kwh_baseline'] - daily_summary['total_kwh_10pct']
+
+daily_summary.to_csv('2_daily_reduction_summary.csv', index=False)
 
 # Weather & CDD
 final_weather = pd.concat(weather_chunks).groupby(['meter_id', 'date']).mean().reset_index()
