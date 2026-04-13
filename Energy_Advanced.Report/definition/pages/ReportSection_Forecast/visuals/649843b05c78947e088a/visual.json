@@ -1,0 +1,164 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "649843b05c78947e088a",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 395.25562372188142,
+    "width": 783.31288343558288
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "forecast_hourly_results"
+                    }
+                  },
+                  "Property": "DateHour"
+                }
+              },
+              "queryRef": "forecast_hourly_results.DateHour",
+              "nativeQueryRef": "DateHour",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "forecast_hourly_results"
+                        }
+                      },
+                      "Property": "Actual_kwh"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(forecast_hourly_results.Actual_kwh)",
+              "nativeQueryRef": "Actual_kwh"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "forecast_hourly_results"
+                        }
+                      },
+                      "Property": "Pred_Arima"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(forecast_hourly_results.Pred_Arima)",
+              "nativeQueryRef": "Pred_Arima"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "forecast_hourly_results"
+                        }
+                      },
+                      "Property": "Pred_Prophet"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(forecast_hourly_results.Pred_Prophet)",
+              "nativeQueryRef": "Pred_Prophet"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "forecast_hourly_results"
+                        }
+                      },
+                      "Property": "Pred_Sarima"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(forecast_hourly_results.Pred_Sarima)",
+              "nativeQueryRef": "Pred_Sarima"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "forecast_hourly_results"
+                  }
+                },
+                "Property": "DateHour"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'So sánh Dự Báo Phụ Tải và Thực Tế'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "6fe0d6c12521055d1de2",
+  "position": {
+    "x": 793,
+    "y": 0,
+    "z": 2,
+    "height": 395,
+    "width": 487,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "lineClusteredColumnComboChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "forecast_hourly_metrics"
+                    }
+                  },
+                  "Property": "model"
+                }
+              },
+              "queryRef": "forecast_hourly_metrics.model",
+              "nativeQueryRef": "model",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "forecast_hourly_metrics"
+                        }
+                      },
+                      "Property": "RMSE"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(forecast_hourly_metrics.RMSE)",
+              "nativeQueryRef": "RMSE"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "forecast_hourly_metrics"
+                        }
+                      },
+                      "Property": "MAE"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(forecast_hourly_metrics.MAE)",
+              "nativeQueryRef": "MAE"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "forecast_hourly_metrics"
+                        }
+                      },
+                      "Property": "MAPE"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(forecast_hourly_metrics.MAPE)",
+              "nativeQueryRef": "MAPE"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "forecast_hourly_metrics"
+                      }
+                    },
+                    "Property": "RMSE"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Đánh giá sai số mô hình'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Càng thấp càng tốt'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

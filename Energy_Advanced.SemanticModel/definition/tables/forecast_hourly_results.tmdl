@@ -1,0 +1,47 @@
+table forecast_hourly_results
+	lineageTag: a1b2c3d4-0001-0001-0001-0123456789ab
+
+	column DateHour
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a1b2c3d4-0001-0001-0002-0123456789ab
+		sourceColumn: DateHour
+
+	column Actual_kwh
+		dataType: double
+		formatString: 0.0000
+		lineageTag: a1b2c3d4-0001-0001-0003-0123456789ab
+		sourceColumn: Actual_kwh
+
+	column Pred_Arima
+		dataType: double
+		formatString: 0.0000
+		lineageTag: a1b2c3d4-0001-0001-0004-0123456789ab
+		sourceColumn: Pred_Arima
+
+	column Pred_Sarima
+		dataType: double
+		formatString: 0.0000
+		lineageTag: a1b2c3d4-0001-0001-0005-0123456789ab
+		sourceColumn: Pred_Sarima
+
+	column Pred_Prophet
+		dataType: double
+		formatString: 0.0000
+		lineageTag: a1b2c3d4-0001-0001-0006-0123456789ab
+		sourceColumn: Pred_Prophet
+
+	partition forecast_hourly_results = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("c:\Users\devtu\Downloads\drive-download-20260412T134408Z-3-001\Dashboard (tai ca folder nay + run file .pbip trong do)\forecast_hourly_results.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"DateHour", type datetime}, {"Actual_kwh", type number}, {"Pred_Arima", type number}, {"Pred_Sarima", type number}, {"Pred_Prophet", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

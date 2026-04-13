@@ -1,0 +1,40 @@
+table forecast_hourly_metrics
+	lineageTag: a1b2c3d4-0002-0001-0001-0123456789ab
+
+	column model
+		dataType: string
+		lineageTag: a1b2c3d4-0002-0001-0002-0123456789ab
+		sourceColumn: model
+
+	column MAE
+		dataType: double
+		formatString: 0.0000
+		lineageTag: a1b2c3d4-0002-0001-0003-0123456789ab
+		sourceColumn: MAE
+
+	column RMSE
+		dataType: double
+		formatString: 0.0000
+		lineageTag: a1b2c3d4-0002-0001-0004-0123456789ab
+		sourceColumn: RMSE
+
+	column MAPE
+		dataType: double
+		formatString: 0.0000
+		lineageTag: a1b2c3d4-0002-0001-0005-0123456789ab
+		sourceColumn: MAPE
+
+	partition forecast_hourly_metrics = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("c:\Users\devtu\Downloads\drive-download-20260412T134408Z-3-001\Dashboard (tai ca folder nay + run file .pbip trong do)\forecast_hourly_metrics.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"model", type text}, {"MAE", type number}, {"RMSE", type number}, {"MAPE", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

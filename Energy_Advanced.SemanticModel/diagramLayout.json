@@ -163,6 +163,45 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3692,
+            "y": 38
+          },
+          "nodeIndex": "forecast_hourly_future",
+          "nodeLineageTag": "a1b2c3d4-0003-0001-0001-0123456789ab",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3976,
+            "y": 62
+          },
+          "nodeIndex": "forecast_hourly_metrics",
+          "nodeLineageTag": "a1b2c3d4-0002-0001-0001-0123456789ab",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4260,
+            "y": 50
+          },
+          "nodeIndex": "forecast_hourly_results",
+          "nodeLineageTag": "a1b2c3d4-0001-0001-0001-0123456789ab",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

@@ -4,7 +4,8 @@
     "ReportSection_Trend",
     "ReportSection_Peak",
     "ReportSection_Corr",
-    "ReportSection_Detail"
+    "ReportSection_Detail",
+    "ReportSection_Forecast"
   ],
-  "activePageName": "ReportSection_Detail"
+  "activePageName": "ReportSection_Forecast"
 }
